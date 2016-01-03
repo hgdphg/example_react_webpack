@@ -4,7 +4,14 @@ export default class Hello extends React.Component {
   render() {
     let props = this.props;
     return (
-      <h1>Hello World, i'm React. Wellcome {props.name} ({props.age} years old) </h1>
-      )
+      <div>
+        <h1>
+          Hello World, i'm React
+        </h1>
+        <h3>
+          Wellcome {props.name} ({props.age} years old)
+        </h3>
+      </div>
+    );
   }
 }

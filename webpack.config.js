@@ -7,11 +7,31 @@ const PATHS = {
   build: path.join(__dirname, 'build')
 };
 
+const TARGET = process.env.npm_lifecycle_event;
+process.env.BABEL_ENV = TARGET
+
 module.exports = {
   entry: PATHS.app,
   output: {
     path: PATHS.build,
     filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: ['','.js','.jsx']
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.css$/,
+        loaders: ['style-loader','css-loader'],
+        include: PATHS.app
+      },
+      {
+        test: /\.jsx?$/,
+        include: PATHS.app,
+        loader: "babel-loader"
+      }
+    ]
   },
   devServer: {
     hot: true,
@@ -25,7 +45,7 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlwebpackPlugin({
-      title: 'My app'
+      title: 'First app with react and webpack'
     })
   ]
 };
